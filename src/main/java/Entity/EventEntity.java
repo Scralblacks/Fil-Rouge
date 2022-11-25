@@ -16,20 +16,22 @@ public class EventEntity {
     private Timestamp dateCreated;
     @Basic
     @Column(name = "id_task")
-    private int Task;
+    private int idTask;
     @Basic
     @Column(name = "id_action")
-    private int Action;
+    private int idAction;
     @Basic
     @Column(name = "id_planning")
-    private int Planning;
-    @OneToOne(mappedBy = "idEvent")
-    private TaskEntity idTask;
-    @OneToOne(mappedBy = "idEvent")
-    private ActionEntity idAction;
-    @OneToOne
+    private int idPlanning;
+    @ManyToOne
     @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false)
-    private PlanningEntity idPlanning;
+    private PlanningEntity planning;
+    @ManyToOne
+    @JoinColumn(name = "id_task", referencedColumnName = "id_task", nullable = false)
+    private TaskEntity task;
+    @ManyToOne
+    @JoinColumn(name = "id_action", referencedColumnName = "id_action", nullable = false)
+    private ActionEntity action;
 
     public int getIdEvent() {
         return idEvent;
@@ -47,28 +49,28 @@ public class EventEntity {
         this.dateCreated = dateCreated;
     }
 
-    public int getTask() {
-        return Task;
+    public int getIdTask() {
+        return idTask;
     }
 
-    public void setTask(int task) {
-        Task = task;
+    public void setIdTask(int idTask) {
+        this.idTask = idTask;
     }
 
-    public int getAction() {
-        return Action;
+    public int getIdAction() {
+        return idAction;
     }
 
-    public void setAction(int action) {
-        Action = action;
+    public void setIdAction(int idAction) {
+        this.idAction = idAction;
     }
 
-    public int getPlanning() {
-        return Planning;
+    public int getIdPlanning() {
+        return idPlanning;
     }
 
-    public void setPlanning(int planning) {
-        Planning = planning;
+    public void setIdPlanning(int idPlanning) {
+        this.idPlanning = idPlanning;
     }
 
     @Override
@@ -79,9 +81,9 @@ public class EventEntity {
         EventEntity that = (EventEntity) o;
 
         if (idEvent != that.idEvent) return false;
-        if (Task != that.Task) return false;
-        if (Action != that.Action) return false;
-        if (Planning != that.Planning) return false;
+        if (idTask != that.idTask) return false;
+        if (idAction != that.idAction) return false;
+        if (idPlanning != that.idPlanning) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
 
         return true;
@@ -91,33 +93,33 @@ public class EventEntity {
     public int hashCode() {
         int result = idEvent;
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
-        result = 31 * result + Task;
-        result = 31 * result + Action;
-        result = 31 * result + Planning;
+        result = 31 * result + idTask;
+        result = 31 * result + idAction;
+        result = 31 * result + idPlanning;
         return result;
     }
 
-    public TaskEntity getIdTask() {
-        return idTask;
+    public PlanningEntity getPlanning() {
+        return planning;
     }
 
-    public void setIdTask(TaskEntity idTask) {
-        this.idTask = idTask;
+    public void setPlanning(PlanningEntity planning) {
+        this.planning = planning;
     }
 
-    public ActionEntity getIdAction() {
-        return idAction;
+    public TaskEntity getTask() {
+        return task;
     }
 
-    public void setIdAction(ActionEntity idAction) {
-        this.idAction = idAction;
+    public void setTask(TaskEntity task) {
+        this.task = task;
     }
 
-    public PlanningEntity getIdPlanning() {
-        return idPlanning;
+    public ActionEntity getAction() {
+        return action;
     }
 
-    public void setIdPlanning(PlanningEntity idPlanning) {
-        this.idPlanning = idPlanning;
+    public void setAction(ActionEntity action) {
+        this.action = action;
     }
 }

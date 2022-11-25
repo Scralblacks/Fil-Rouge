@@ -2,6 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "address", schema = "fil_rouge")
 public class AddressEntity {
@@ -15,8 +17,8 @@ public class AddressEntity {
     @Basic
     @Column(name = "postal_code")
     private String postalCode;
-    @OneToOne(mappedBy = "Address")
-    private UsersEntity idUser;
+    @OneToMany(mappedBy = "address")
+    private List<UsersEntity> listUsers;
 
     public int getIdAddress() {
         return idAddress;
@@ -64,11 +66,11 @@ public class AddressEntity {
         return result;
     }
 
-    public UsersEntity getIdUser() {
-        return idUser;
+    public List<UsersEntity> getListUsers() {
+        return listUsers;
     }
 
-    public void setIdUser(UsersEntity idUser) {
-        this.idUser = idUser;
+    public void setListUsers(List<UsersEntity> listUsers) {
+        this.listUsers = listUsers;
     }
 }

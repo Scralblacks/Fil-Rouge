@@ -1,19 +1,20 @@
 package DAO;
 
 import Entity.ActionEntity;
+import Entity.RoleEntity;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class RoleDao implements CrudDAO<ActionEntity>{
+public class RoleDao implements CrudDAO<RoleEntity> {
     @Override
-    public List<ActionEntity> findAll() throws SQLException {
+    public List<RoleEntity> findAll() throws SQLException {
         return null;
     }
 
     @Override
-    public Optional<ActionEntity> findById(Long id) throws SQLException {
+    public Optional<RoleEntity> findById(Long id) throws SQLException {
         return Optional.empty();
     }
 
@@ -23,12 +24,12 @@ public class RoleDao implements CrudDAO<ActionEntity>{
     }
 
     @Override
-    public ActionEntity update(ActionEntity element) throws SQLException {
+    public RoleEntity update(RoleEntity element) throws SQLException {
         return null;
     }
 
     @Override
-    public ActionEntity create(ActionEntity element) throws SQLException {
+    public RoleEntity create(RoleEntity element) throws SQLException {
         return null;
     }
 }

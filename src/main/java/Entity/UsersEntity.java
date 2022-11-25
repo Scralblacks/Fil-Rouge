@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -38,21 +37,18 @@ public class UsersEntity {
     @Basic
     @Column(name = "id_planning")
     private int idPlanning;
+    @ManyToOne
+    @JoinColumn(name = "id_address", referencedColumnName = "id_address", nullable = false)
+    private AddressEntity address;
+    @ManyToOne
+    @JoinColumn(name = "id_role", referencedColumnName = "id_role", nullable = false)
+    private RoleEntity role;
     @OneToOne
     @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false)
-    private PlanningEntity Planning;
-    @OneToOne
-    @JoinColumn(name = "id_role", referencedColumnName = "id_role", nullable = false)
-    private RoleEntity Role;
-    @OneToOne
-    @JoinColumn(name = "id_address", referencedColumnName = "id_address", nullable = false)
-    private AddressEntity Address;
-    @OneToMany(mappedBy = "idUser")
-    private Collection<PlanningEntity> listPlanning;
-
-    public void setListPlanning(Collection<PlanningEntity> listPlanning) {
-        this.listPlanning = listPlanning;
-    }
+    private PlanningEntity planning;
+    @ManyToMany
+    @JoinTable(name = "share", schema = "fil_rouge", joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id_user", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false))
+    private List<PlanningEntity> listSharedPlanning;
 
     public int getIdUser() {
         return idUser;
@@ -161,35 +157,35 @@ public class UsersEntity {
         return result;
     }
 
-    public PlanningEntity getPlanning() {
-        return Planning;
-    }
-
-    public void setPlanning(PlanningEntity planning) {
-        Planning = planning;
-    }
-
-    public RoleEntity getRole() {
-        return Role;
-    }
-
-    public void setRole(RoleEntity role) {
-        Role = role;
-    }
-
     public AddressEntity getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(AddressEntity address) {
-        Address = address;
+        this.address = address;
     }
 
-    public Collection<PlanningEntity> getListPlanning() {
-        return listPlanning;
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public void setListPlanning(List<PlanningEntity> listPlanning) {
-        this.listPlanning = listPlanning;
+    public void setRole(RoleEntity role) {
+        this.role = role;
+    }
+
+    public PlanningEntity getPlanning() {
+        return planning;
+    }
+
+    public void setPlanning(PlanningEntity planning) {
+        this.planning = planning;
+    }
+
+    public List<PlanningEntity> getListSharedPlanning() {
+        return listSharedPlanning;
+    }
+
+    public void setListSharedPlanning(List<PlanningEntity> listSharedPlanning) {
+        this.listSharedPlanning = listSharedPlanning;
     }
 }

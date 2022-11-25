@@ -1,19 +1,19 @@
 package DAO;
 
-import Entity.ActionEntity;
+import Entity.UsersEntity;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDao implements CrudDAO<ActionEntity>{
+public class UsersDao implements CrudDAO<UsersEntity> {
     @Override
-    public List<ActionEntity> findAll() throws SQLException {
+    public List<UsersEntity> findAll() throws SQLException {
         return null;
     }
 
     @Override
-    public Optional<ActionEntity> findById(Long id) throws SQLException {
+    public Optional<UsersEntity> findById(Long id) throws SQLException {
         return Optional.empty();
     }
 
@@ -23,12 +23,12 @@ public class UserDao implements CrudDAO<ActionEntity>{
     }
 
     @Override
-    public ActionEntity update(ActionEntity element) throws SQLException {
+    public UsersEntity update(UsersEntity element) throws SQLException {
         return null;
     }
 
     @Override
-    public ActionEntity create(ActionEntity element) throws SQLException {
+    public UsersEntity create(UsersEntity element) throws SQLException {
         return null;
     }
 }

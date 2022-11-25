@@ -2,6 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "action", schema = "fil_rouge")
 public class ActionEntity {
@@ -12,9 +14,8 @@ public class ActionEntity {
     @Basic
     @Column(name = "name")
     private String name;
-    @OneToOne
-    @JoinColumn(name = "id_action", referencedColumnName = "id_action", nullable = false)
-    private EventEntity idEvent;
+    @OneToMany(mappedBy = "action")
+    private List<EventEntity> listEvent;
 
     public int getIdAction() {
         return idAction;
@@ -52,11 +53,11 @@ public class ActionEntity {
         return result;
     }
 
-    public EventEntity getIdEvent() {
-        return idEvent;
+    public List<EventEntity> getListEvent() {
+        return listEvent;
     }
 
-    public void setIdEvent(EventEntity idEvent) {
-        this.idEvent = idEvent;
+    public void setListEvent(List<EventEntity> listEvent) {
+        this.listEvent = listEvent;
     }
 }

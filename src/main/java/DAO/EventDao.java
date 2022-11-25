@@ -1,19 +1,20 @@
 package DAO;
 
 import Entity.ActionEntity;
+import Entity.EventEntity;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class EventDao implements CrudDAO<ActionEntity>{
+public class EventDao implements CrudDAO<EventEntity> {
     @Override
-    public List<ActionEntity> findAll() throws SQLException {
+    public List<EventEntity> findAll() throws SQLException {
         return null;
     }
 
     @Override
-    public Optional<ActionEntity> findById(Long id) throws SQLException {
+    public Optional<EventEntity> findById(Long id) throws SQLException {
         return Optional.empty();
     }
 
@@ -23,12 +24,12 @@ public class EventDao implements CrudDAO<ActionEntity>{
     }
 
     @Override
-    public ActionEntity update(ActionEntity element) throws SQLException {
+    public EventEntity update(EventEntity element) throws SQLException {
         return null;
     }
 
     @Override
-    public ActionEntity create(ActionEntity element) throws SQLException {
+    public EventEntity create(EventEntity element) throws SQLException {
         return null;
     }
 }

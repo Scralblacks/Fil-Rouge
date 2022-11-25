@@ -2,6 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "role", schema = "fil_rouge")
 public class RoleEntity {
@@ -12,8 +14,8 @@ public class RoleEntity {
     @Basic
     @Column(name = "name")
     private String name;
-    @OneToOne(mappedBy = "Role")
-    private UsersEntity idUser;
+    @OneToMany(mappedBy = "role")
+    private List<UsersEntity> listUsers;
 
     public int getIdRole() {
         return idRole;
@@ -51,11 +53,11 @@ public class RoleEntity {
         return result;
     }
 
-    public UsersEntity getIdUser() {
-        return idUser;
+    public List<UsersEntity> getListUsers() {
+        return listUsers;
     }
 
-    public void setIdUser(UsersEntity idUser) {
-        this.idUser = idUser;
+    public void setListUsers(List<UsersEntity> listUsers) {
+        this.listUsers = listUsers;
     }
 }

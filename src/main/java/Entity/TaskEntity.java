@@ -3,6 +3,7 @@ package Entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "task", schema = "fil_rouge")
@@ -29,12 +30,11 @@ public class TaskEntity {
     @Basic
     @Column(name = "id_planning")
     private int idPlanning;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false)
-    private PlanningEntity idPanning;
-    @OneToOne
-    @JoinColumn(name = "id_task", referencedColumnName = "id_task", nullable = false)
-    private EventEntity idEvent;
+    private PlanningEntity planning;
+    @OneToMany(mappedBy = "task")
+    private List<EventEntity> listEvent;
 
     public int getIdTask() {
         return idTask;
@@ -123,19 +123,19 @@ public class TaskEntity {
         return result;
     }
 
-    public PlanningEntity getIdPanning() {
-        return idPanning;
+    public PlanningEntity getPlanning() {
+        return planning;
     }
 
-    public void setIdPanning(PlanningEntity idPanning) {
-        this.idPanning = idPanning;
+    public void setPlanning(PlanningEntity planning) {
+        this.planning = planning;
     }
 
-    public EventEntity getIdEvent() {
-        return idEvent;
+    public List<EventEntity> getListEvent() {
+        return listEvent;
     }
 
-    public void setIdEvent(EventEntity idEvent) {
-        this.idEvent = idEvent;
+    public void setListEvent(List<EventEntity> listEvent) {
+        this.listEvent = listEvent;
     }
 }

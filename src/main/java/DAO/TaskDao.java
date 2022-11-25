@@ -1,19 +1,20 @@
 package DAO;
 
 import Entity.ActionEntity;
+import Entity.TaskEntity;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class TaskDao implements CrudDAO<ActionEntity>{
+public class TaskDao implements CrudDAO<TaskEntity> {
     @Override
-    public List<ActionEntity> findAll() throws SQLException {
+    public List<TaskEntity> findAll() throws SQLException {
         return null;
     }
 
     @Override
-    public Optional<ActionEntity> findById(Long id) throws SQLException {
+    public Optional<TaskEntity> findById(Long id) throws SQLException {
         return Optional.empty();
     }
 
@@ -23,12 +24,12 @@ public class TaskDao implements CrudDAO<ActionEntity>{
     }
 
     @Override
-    public ActionEntity update(ActionEntity element) throws SQLException {
+    public TaskEntity update(TaskEntity element) throws SQLException {
         return null;
     }
 
     @Override
-    public ActionEntity create(ActionEntity element) throws SQLException {
+    public TaskEntity create(TaskEntity element) throws SQLException {
         return null;
     }
 }

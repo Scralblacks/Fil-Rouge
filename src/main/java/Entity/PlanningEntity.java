@@ -3,6 +3,7 @@ package Entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "planning", schema = "fil_rouge")
@@ -20,15 +21,14 @@ public class PlanningEntity {
     @Basic
     @Column(name = "id_owner")
     private int idOwner;
-    @OneToOne(mappedBy = "Planning")
-    private UsersEntity Owner;
-    @OneToOne(mappedBy = "idPanning")
-    private TaskEntity idTask;
-    @OneToOne(mappedBy = "idPlanning")
-    private EventEntity idEvent;
-    @ManyToOne
-    @JoinTable(name = "share", schema = "fil_rouge", joinColumns = @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id_user", nullable = false))
-    private UsersEntity idUser;
+    @OneToOne(mappedBy = "planning")
+    private UsersEntity owner;
+    @ManyToMany(mappedBy = "listSharedPlanning")
+    private List<UsersEntity> listShareToUsers;
+    @OneToMany(mappedBy = "planning")
+    private List<EventEntity> listEvent;
+    @OneToMany(mappedBy = "planning")
+    private List<TaskEntity> listTask;
 
     public int getIdPlanning() {
         return idPlanning;
@@ -87,34 +87,34 @@ public class PlanningEntity {
     }
 
     public UsersEntity getOwner() {
-        return Owner;
+        return owner;
     }
 
     public void setOwner(UsersEntity owner) {
-        Owner = owner;
+        this.owner = owner;
     }
 
-    public TaskEntity getIdTask() {
-        return idTask;
+    public List<UsersEntity> getListShareToUsers() {
+        return listShareToUsers;
     }
 
-    public void setIdTask(TaskEntity idTask) {
-        this.idTask = idTask;
+    public void setListShareToUsers(List<UsersEntity> listShareToUsers) {
+        this.listShareToUsers = listShareToUsers;
     }
 
-    public EventEntity getIdEvent() {
-        return idEvent;
+    public List<EventEntity> getListEvent() {
+        return listEvent;
     }
 
-    public void setIdEvent(EventEntity idEvent) {
-        this.idEvent = idEvent;
+    public void setListEvent(List<EventEntity> listEvent) {
+        this.listEvent = listEvent;
     }
 
-    public UsersEntity getIdUser() {
-        return idUser;
+    public List<TaskEntity> getListTask() {
+        return listTask;
     }
 
-    public void setIdUser(UsersEntity idUser) {
-        this.idUser = idUser;
+    public void setListTask(List<TaskEntity> listTask) {
+        this.listTask = listTask;
     }
 }

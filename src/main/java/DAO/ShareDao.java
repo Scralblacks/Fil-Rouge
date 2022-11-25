@@ -1,19 +1,20 @@
 package DAO;
 
 import Entity.ActionEntity;
+import Entity.ShareEntity;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class ShareDao implements CrudDAO<ActionEntity>{
+public class ShareDao implements CrudDAO<ShareEntity> {
     @Override
-    public List<ActionEntity> findAll() throws SQLException {
+    public List<ShareEntity> findAll() throws SQLException {
         return null;
     }
 
     @Override
-    public Optional<ActionEntity> findById(Long id) throws SQLException {
+    public Optional<ShareEntity> findById(Long id) throws SQLException {
         return Optional.empty();
     }
 
@@ -23,12 +24,12 @@ public class ShareDao implements CrudDAO<ActionEntity>{
     }
 
     @Override
-    public ActionEntity update(ActionEntity element) throws SQLException {
+    public ShareEntity update(ShareEntity element) throws SQLException {
         return null;
     }
 
     @Override
-    public ActionEntity create(ActionEntity element) throws SQLException {
+    public ShareEntity create(ShareEntity element) throws SQLException {
         return null;
     }
 }

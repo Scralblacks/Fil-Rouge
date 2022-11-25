@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class AddressDao implements CrudDAO<ActionEntity>{
+public class AddressDao implements CrudDAO<AddressDao> {
     @Override
-    public List<ActionEntity> findAll() throws SQLException {
+    public List<AddressDao> findAll() throws SQLException {
         return null;
     }
 
     @Override
-    public Optional<ActionEntity> findById(Long id) throws SQLException {
+    public Optional<AddressDao> findById(Long id) throws SQLException {
         return Optional.empty();
     }
 
@@ -23,12 +23,12 @@ public class AddressDao implements CrudDAO<ActionEntity>{
     }
 
     @Override
-    public ActionEntity update(ActionEntity element) throws SQLException {
+    public AddressDao update(AddressDao element) throws SQLException {
         return null;
     }
 
     @Override
-    public ActionEntity create(ActionEntity element) throws SQLException {
+    public AddressDao create(AddressDao element) throws SQLException {
         return null;
     }
 }
