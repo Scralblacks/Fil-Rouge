@@ -17,6 +17,14 @@ public class ActionEntity {
     @OneToMany(mappedBy = "action")
     private List<EventEntity> listEvent;
 
+    public ActionEntity(String create) {
+        this.name = create;
+    }
+
+    public ActionEntity() {
+        
+    }
+
     public int getIdAction() {
         return idAction;
     }

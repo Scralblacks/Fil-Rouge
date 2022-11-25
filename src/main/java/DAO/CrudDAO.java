@@ -6,14 +6,16 @@ import java.util.Optional;
 
 public interface CrudDAO<E> {
 
-        List<E> findAll() throws SQLException;
+        List<E> findAll();
 
-        Optional<E> findById(Long id) throws SQLException;
+        Optional<E> findById(Long id);
 
-        boolean delete(Long id) throws SQLException;
+        boolean delete(Long id);
 
-        E update(E element) throws SQLException;
+        E update(E element);
 
-        E create(E element) throws SQLException;
+        E create(E element);
+
+        Optional<E> checkIfExists(E element);
     }
 

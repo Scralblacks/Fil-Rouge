@@ -3,6 +3,7 @@ package Entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,18 +18,15 @@ public class PlanningEntity {
     private String namePlanning;
     @Basic
     @Column(name = "date_created")
-    private Timestamp dateCreated;
-    @Basic
-    @Column(name = "id_owner")
-    private int idOwner;
+    private LocalDate dateCreated;
     @OneToOne(mappedBy = "planning")
     private UsersEntity owner;
-    @ManyToMany(mappedBy = "listSharedPlanning")
-    private List<UsersEntity> listShareToUsers;
     @OneToMany(mappedBy = "planning")
     private List<EventEntity> listEvent;
     @OneToMany(mappedBy = "planning")
     private List<TaskEntity> listTask;
+    @OneToMany
+    private List<ShareEntity> listShare;
 
     public int getIdPlanning() {
         return idPlanning;
@@ -46,22 +44,13 @@ public class PlanningEntity {
         this.namePlanning = namePlanning;
     }
 
-    public Timestamp getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Timestamp dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
-
-    public int getIdOwner() {
-        return idOwner;
-    }
-
-    public void setIdOwner(int idOwner) {
-        this.idOwner = idOwner;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,7 +59,6 @@ public class PlanningEntity {
         PlanningEntity that = (PlanningEntity) o;
 
         if (idPlanning != that.idPlanning) return false;
-        if (idOwner != that.idOwner) return false;
         if (namePlanning != null ? !namePlanning.equals(that.namePlanning) : that.namePlanning != null) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
 
@@ -82,7 +70,6 @@ public class PlanningEntity {
         int result = idPlanning;
         result = 31 * result + (namePlanning != null ? namePlanning.hashCode() : 0);
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
-        result = 31 * result + idOwner;
         return result;
     }
 
@@ -92,14 +79,6 @@ public class PlanningEntity {
 
     public void setOwner(UsersEntity owner) {
         this.owner = owner;
-    }
-
-    public List<UsersEntity> getListShareToUsers() {
-        return listShareToUsers;
-    }
-
-    public void setListShareToUsers(List<UsersEntity> listShareToUsers) {
-        this.listShareToUsers = listShareToUsers;
     }
 
     public List<EventEntity> getListEvent() {
@@ -116,5 +95,34 @@ public class PlanningEntity {
 
     public void setListTask(List<TaskEntity> listTask) {
         this.listTask = listTask;
+    }
+
+    public List<ShareEntity> getLIstShare() {
+        return listShare;
+    }
+
+    public void setShare(List<ShareEntity> listShare) {
+        this.listShare = listShare;
+    }
+
+    public PlanningEntity(String namePlanning, LocalDate dateCreated) {
+        this.namePlanning = namePlanning;
+        this.dateCreated = dateCreated;
+    }
+
+    public PlanningEntity() {
+    }
+
+    public PlanningEntity(int idPlanning, String namePlanning, LocalDate dateCreated) {
+        this.idPlanning = idPlanning;
+        this.namePlanning = namePlanning;
+        this.dateCreated = dateCreated;
+    }
+
+    public PlanningEntity(int idPlanning, String namePlanning, LocalDate dateCreated, UsersEntity user) {
+        this.idPlanning = idPlanning;
+        this.namePlanning = namePlanning;
+        this.dateCreated = dateCreated;
+        this.owner = user;
     }
 }

@@ -27,9 +27,6 @@ public class TaskEntity {
     @Basic
     @Column(name = "description")
     private String description;
-    @Basic
-    @Column(name = "id_planning")
-    private int idPlanning;
     @ManyToOne
     @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false)
     private PlanningEntity planning;
@@ -84,14 +81,6 @@ public class TaskEntity {
         this.description = description;
     }
 
-    public int getIdPlanning() {
-        return idPlanning;
-    }
-
-    public void setIdPlanning(int idPlanning) {
-        this.idPlanning = idPlanning;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,7 +89,6 @@ public class TaskEntity {
         TaskEntity that = (TaskEntity) o;
 
         if (idTask != that.idTask) return false;
-        if (idPlanning != that.idPlanning) return false;
         if (nameTask != null ? !nameTask.equals(that.nameTask) : that.nameTask != null) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
         if (dateTaskStart != null ? !dateTaskStart.equals(that.dateTaskStart) : that.dateTaskStart != null)
@@ -119,7 +107,6 @@ public class TaskEntity {
         result = 31 * result + (dateTaskStart != null ? dateTaskStart.hashCode() : 0);
         result = 31 * result + (dateTaskEnd != null ? dateTaskEnd.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + idPlanning;
         return result;
     }
 

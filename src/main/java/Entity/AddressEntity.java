@@ -2,6 +2,7 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,15 @@ public class AddressEntity {
     private String postalCode;
     @OneToMany(mappedBy = "address")
     private List<UsersEntity> listUsers;
+
+    public AddressEntity(String name, String code) {
+        this.city = name;
+        this.postalCode = code;
+    }
+
+    public AddressEntity() {
+
+    }
 
     public int getIdAddress() {
         return idAddress;

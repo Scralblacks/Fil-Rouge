@@ -2,42 +2,29 @@ package Entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "share", schema = "fil_rouge")
 public class ShareEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id_user")
-    private int idUser;
+
+    @EmbeddedId
+    private SharedId idShare = new SharedId();
     @Basic
     @Column(name = "is_read_only")
-    private byte isReadOnly;
-    @Basic
-    @Column(name = "id_planning")
-    private int idPlanning;
+    private boolean isReadOnly;
+    @ManyToOne
+    @MapsId("usersId")
+    private  UsersEntity users;
+    @ManyToOne
+    @MapsId("planningId")
+    private PlanningEntity planning;
 
-    public int getIdUser() {
-        return idUser;
+    public SharedId getIdShare() {
+        return idShare;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public byte getIsReadOnly() {
-        return isReadOnly;
-    }
-
-    public void setIsReadOnly(byte isReadOnly) {
-        this.isReadOnly = isReadOnly;
-    }
-
-    public int getIdPlanning() {
-        return idPlanning;
-    }
-
-    public void setIdPlanning(int idPlanning) {
-        this.idPlanning = idPlanning;
+    public void setIdShare(SharedId idShare) {
+        this.idShare = idShare;
     }
 
     @Override
@@ -47,18 +34,24 @@ public class ShareEntity {
 
         ShareEntity that = (ShareEntity) o;
 
-        if (idUser != that.idUser) return false;
         if (isReadOnly != that.isReadOnly) return false;
-        if (idPlanning != that.idPlanning) return false;
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = idUser;
-        result = 31 * result + (int) isReadOnly;
-        result = 31 * result + idPlanning;
-        return result;
+    public UsersEntity getUsers() {
+        return users;
+    }
+
+    public void setUsers(UsersEntity users) {
+        this.users = users;
+    }
+
+    public PlanningEntity getPlanning() {
+        return planning;
+    }
+
+    public void setPlanning(PlanningEntity planning) {
+        this.planning = planning;
     }
 }

@@ -17,6 +17,14 @@ public class RoleEntity {
     @OneToMany(mappedBy = "role")
     private List<UsersEntity> listUsers;
 
+    public RoleEntity(String name) {
+        this.name = name;
+    }
+
+    public RoleEntity() {
+
+    }
+
     public int getIdRole() {
         return idRole;
     }

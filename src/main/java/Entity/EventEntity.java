@@ -14,15 +14,6 @@ public class EventEntity {
     @Basic
     @Column(name = "date_created")
     private Timestamp dateCreated;
-    @Basic
-    @Column(name = "id_task")
-    private int idTask;
-    @Basic
-    @Column(name = "id_action")
-    private int idAction;
-    @Basic
-    @Column(name = "id_planning")
-    private int idPlanning;
     @ManyToOne
     @JoinColumn(name = "id_planning", referencedColumnName = "id_planning", nullable = false)
     private PlanningEntity planning;
@@ -49,29 +40,6 @@ public class EventEntity {
         this.dateCreated = dateCreated;
     }
 
-    public int getIdTask() {
-        return idTask;
-    }
-
-    public void setIdTask(int idTask) {
-        this.idTask = idTask;
-    }
-
-    public int getIdAction() {
-        return idAction;
-    }
-
-    public void setIdAction(int idAction) {
-        this.idAction = idAction;
-    }
-
-    public int getIdPlanning() {
-        return idPlanning;
-    }
-
-    public void setIdPlanning(int idPlanning) {
-        this.idPlanning = idPlanning;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -81,9 +49,6 @@ public class EventEntity {
         EventEntity that = (EventEntity) o;
 
         if (idEvent != that.idEvent) return false;
-        if (idTask != that.idTask) return false;
-        if (idAction != that.idAction) return false;
-        if (idPlanning != that.idPlanning) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
 
         return true;
@@ -93,9 +58,6 @@ public class EventEntity {
     public int hashCode() {
         int result = idEvent;
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
-        result = 31 * result + idTask;
-        result = 31 * result + idAction;
-        result = 31 * result + idPlanning;
         return result;
     }
 

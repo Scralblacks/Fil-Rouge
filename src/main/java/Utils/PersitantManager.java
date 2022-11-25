@@ -13,7 +13,7 @@ public final class PersitantManager {
 
     }
 
-    public static EntityManagerFactory getFactoryInstance() throws SQLException {
+    public static EntityManagerFactory getFactoryInstance(){
         if (FACTORY_INSTANCE == null || !FACTORY_INSTANCE.isOpen() ) {
             FACTORY_INSTANCE = Persistence.createEntityManagerFactory("myPU");
         }
