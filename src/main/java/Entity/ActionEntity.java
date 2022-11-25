@@ -22,7 +22,7 @@ public class ActionEntity {
     }
 
     public ActionEntity() {
-        
+
     }
 
     public int getIdAction() {
